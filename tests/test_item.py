@@ -8,13 +8,17 @@ def test_item():
     return Item("TV", 10000, 5)
 
 
-def test_calculate_total_price():
-    item = Item("TV", 10000, 2)
-    assert item.calculate_total_price() == 20000
+def test_calculate_total_price(test_item):
+    assert test_item.calculate_total_price() == 50000
 
 
-def test_apply_discount():
-    item = Item("TV", 10000, 2)
-    item.pay_rate = 0.5
-    item.apply_discount()
-    assert item.price == 5000
+def test_apply_discount(test_item):
+    test_item.pay_rate = 0.5
+    test_item.apply_discount()
+    assert test_item.price == 5000
+
+
+def test_string_to_number():
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
